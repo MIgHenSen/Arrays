@@ -1,0 +1,45 @@
+package exer;
+/* O Método Bubble Sort baseia-se na ideia de comparar repetidamente pares de elementos adjacentes e, 
+   em seguida, trocar as suas posições se estiverem na ordem errada */
+
+// Bibliotecas java, necessárias para acesso a alguns recursos
+// Nesse caso, Scanner e para tratamento de uma exceção
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class BublleSort {
+	public static void main(String[] args) throws InputMismatchException{ // Throws diz ao código que em algu momento pode haver o erro
+		int tamanho, total=0, aux=0; //Declaração de variáveis
+		Scanner scanner = new Scanner(System.in); // Declaração de scanner, necessário para que o código leia o que o usuário for digitado
+		
+		try {
+			System.out.println("Organizando números em ordem crescente "); //Pequeno texto sobre a função do software
+			System.out.println("Quantos números deseja organizar: ");
+			tamanho = scanner.nextInt(); // Variável auxiliar para o tamanho da lista
+			int[] soma=new int[tamanho]; // Criação da lista
+			for(int i=0; i<tamanho; i++) {
+				System.out.printf("Informe os numeros[%d]: ",i); // Pedido para informar os valores da lista
+				soma[i]=scanner.nextInt(); // lê os valores e suas respectivas posições na lista
+			}
+			
+			// Método que oraganiza a lista, com base nos valores do vetor criado
+			for(int i=0; i<tamanho; i++) {
+				for(int j=0; j<tamanho-1; j++) {
+					if(soma[j]>soma[j+1]) {
+						aux=soma[j];
+						soma[j]=soma[j+1];
+						soma[j+1]=aux;
+					}
+				}
+			}
+			
+			// Agora, são exibidos os valores da lista de forma organizada
+			System.out.println("Agora organizado: ");
+			for(int i=0; i<tamanho; i++) {
+				System.out.println(""+soma[i]);
+			}
+		}catch(InputMismatchException e) { // Tratamento de exceção
+			System.out.println("Digite apenas valores válidos, por favor!");
+		}
+	}
+}
